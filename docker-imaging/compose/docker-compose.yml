@@ -1,0 +1,11 @@
+version: '2.0'
+services:
+  cart:
+    image: rkalluru/cart:221
+  catalogue:
+    image: rkalluru/catalogue:222
+
+  frontend:
+    image: rkalluru/frontend:223
+    ports:
+      - "80:80"

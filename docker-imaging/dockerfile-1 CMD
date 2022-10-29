@@ -1,0 +1,4 @@
+ROM  ubuntu:18.04
+MAINTAINER  satish@gmail,com
+RUN   apt-get update && apt-get -y install apache2 git
+CMD   ["echo", "Hello World"]

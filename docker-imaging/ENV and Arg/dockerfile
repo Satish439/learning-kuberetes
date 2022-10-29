@@ -1,0 +1,9 @@
+FROM    openjdk:8
+LABEL   author="satish"
+LABEL   org="nomura pvt.ltd"
+ARG     download_location='https://s3.aws.srpingboot.com/file.jar'
+ENV     FILE_LOCATION='file.jar'
+ADD     ${download_location} ${FILE_LOCATION}        //<Soruce><Dest>//
+EXPOSE  8080
+CMD     ["java", "-jar", "${FILE_LOCATION}"]
+

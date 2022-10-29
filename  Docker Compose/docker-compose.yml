@@ -1,0 +1,81 @@
+//MULTI-tier application//
+
+version: '2.0'
+  services:
+
+    cart:
+      image: rkalluru/k06-cart:221
+      environment:
+        REDIS_HOST: redis
+        CATALOGUE_HOST: catalogue
+      depends_on:
+        - catalogue
+        - redis
+
+    catalogue:
+      image: rkalluru/k06-catalogue:222
+      environment:
+        MONGO_URL: "mongodb://mongodb:27017/catalogue"
+        depends_on:  //until mongodb connected to catalogue it is not going to work//
+          - mongodb
+
+    frontend:
+      image: rkalluru/k06-frontend:223
+      ports: -"80:80"
+
+    mongodb:
+      image: rkalluru/k06-mongodb:224
+      container_name: mongodb  // to give a name to container"
+      ports:
+        - "27017"
+      depends_on
+        - catalogue
+    redis:
+      image: rkalluru/k06-redis:224
+      Container_name: redis
+
+    shipping:
+      image: rkalluru/k06-shipping:226
+      container_name: shipping
+      environment:
+        CART_ENDPOINT: "cart:7000"
+        DB_HOST: mysql
+      depends_on:
+        - mysql
+
+    payment:
+      image: rkalluru/k06-payment:225
+      container_name: payment
+      environment:
+        CART_HOST: cart
+        USER_HOST: user
+
+
+
+
+#version: "3.1"
+#services:
+#  web:
+#    image: nginx
+#    ports:
+#      - "6080:80"
+#  database:
+#    image: postgres
+#    environment:
+#      POSTGRES_PASSWORD: composedocker
+
+#version: '2.0'
+#  services:
+#    cart:
+#      image: rkalluru/k06-cart:221
+#    catalogue:
+#      image: rkalluru/k06-catalogue:222
+#      environment:
+#        MONGO_URL: :mongodb://mongodb:27017/catalogur"
+#    frontend:
+#      image: rkalluru/k06-frontend:223
+#      ports: -"80:80"
+#    mongodb:
+#      image: rkalluru/k06-mongodb:224
+#      container_name: mongodb  // to give a name to container"
+#      ports:

@@ -1,0 +1,6 @@
+FROM    openjdk:8
+LABEL   author="Satish"
+LABEL   org="nomura pvt Ltd"
+RUN     wget "S3 bucket path to download jar file"
+EXPOSE  8080
+CMD     ["java", "-jar", "artifact name"]

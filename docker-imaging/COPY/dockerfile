@@ -1,0 +1,6 @@
+FROM    ubuntu:8
+LABEL   author="satish"
+RUN     apt-get update && apt-get install apache2 -y
+WORKDIR  /var/www/html
+COPY     index.html .
+CMD      ["apache2ctl", "-D", "FOREGROUND"]  //to run application process backend when container starts//

@@ -1,0 +1,18 @@
+
+//defining env varaible at container level
+apiVersion: v1
+kind: pod
+metadata:
+  name: env
+spec:
+  containers:
+    - name: centos
+      image: centos7
+      command:
+        - sleep
+        - "10000"
+      env:
+        - name: COURSE_NAME
+          value: kubernetes
+        - name: TRAINER_NAME
+          value: raghu

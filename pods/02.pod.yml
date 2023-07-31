@@ -1,0 +1,9 @@
+apiversion: v1
+kind: pod
+metadata:
+  name: pod03
+spec:
+  containers:
+    - name: ping
+      image: rkalluru/ping:v1
+      imagePullPolicy: Always  // it will pull the latest version image to build//
